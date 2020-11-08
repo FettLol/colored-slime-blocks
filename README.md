@@ -1,9 +1,12 @@
-# Fabric Example Mod
+# Colored Slime Blocks
 
 ## Setup
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+Drop the JAR file into your Mods Folder. Requires the Fabric API.
 
-## License
+## Usage
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+In a Crafting Table, place any dye surrounded by eight Slime Blocks. The resulting slime blocks work just like any
+normal slime block, but they do not stick to normal slime blocks (or other slime blocks of other colors).
+
+Enjoy!
