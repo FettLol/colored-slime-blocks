@@ -39,7 +39,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.mod_id}" }
+		rename { "${it}_${project.archives_base_name}" }
 	}
 }
 
