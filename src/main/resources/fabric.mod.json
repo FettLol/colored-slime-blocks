@@ -1,8 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "coloredslime",
-  "version": "${version}",
-
+  "version": "1.1.0",
   "name": "Colored Slime Blocks",
   "description": "Dye your slime blocks!",
   "authors": [
@@ -19,10 +18,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.coloredslime.ColoredSlime"
+      "net.brekitomasson.coloredslime.ColoredSlime"
     ],
     "client": [
-      "net.coloredslime.ColoredSlimeClient"
+      "net.brekitomasson.coloredslime.ColoredSlimeClient"
     ]
   },
   "mixins": [
@@ -31,9 +30,6 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x"
-  },
-  "suggests": {
-    "flamingo": "*"
+    "minecraft": ">=1.16.5"
   }
 }

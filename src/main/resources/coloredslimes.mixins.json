@@ -1,11 +1,10 @@
 {
   "required": true,
   "minVersion": "0.1",
-  "package": "net.coloredslime.mixin",
+  "package": "net.brekitomasson.coloredslime.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "PistonHandlerMixin",
-    "PistonBlockEntityMixin"
+    "PistonHandlerMixin"
   ],
   "client": [],
   "server": [],

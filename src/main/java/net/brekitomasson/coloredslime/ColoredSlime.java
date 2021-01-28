@@ -1,12 +1,11 @@
-package net.coloredslime;
+package net.brekitomasson.coloredslime;
 
-import net.coloredslime.blocks.ColoredSlimeBlock;
-import net.coloredslime.util.Logger;
+import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
+import net.brekitomasson.coloredslime.util.Logger;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class ColoredSlime implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Colored Slime Blocks loaded!");
+		// There's really nothing to do here.
 	}
 
 	public static boolean isColoredSlimeBlock(Block block) {

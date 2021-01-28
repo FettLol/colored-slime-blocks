@@ -1,6 +1,6 @@
-package net.coloredslime.mixin;
+package net.brekitomasson.coloredslime.mixin;
 
-import net.coloredslime.ColoredSlime;
+import net.brekitomasson.coloredslime.ColoredSlime;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonHandler;
@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = PistonHandler.class, priority = 450)
 public abstract class PistonHandlerMixin {
+
     @Inject(method = { "isBlockSticky" }, at = { @At("HEAD") }, cancellable = true)
     private static void isBlockSticky(Block block, CallbackInfoReturnable<Boolean> ci) {
         // Make the colored slime blocks "sticky".
@@ -21,6 +22,7 @@ public abstract class PistonHandlerMixin {
 
     @Inject(method = { "isAdjacentBlockStuck" }, at = { @At("HEAD") }, cancellable = true)
     private static void isAdjacentBlockStuck(Block block, Block block2, CallbackInfoReturnable<Boolean> ci) {
+
         // Slimes do not connect to colored blocks.
         if (block == Blocks.SLIME_BLOCK && ColoredSlime.isColoredSlimeBlock(block2)) {
             ci.setReturnValue(false);

@@ -1,7 +1,7 @@
-package net.coloredslime.blocks;
+package net.brekitomasson.coloredslime.blocks;
 
-import net.coloredslime.util.BlockHelper;
-import net.coloredslime.util.ItemHelper;
+import net.brekitomasson.coloredslime.util.BlockHelper;
+import net.brekitomasson.coloredslime.util.ItemHelper;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlimeBlock;

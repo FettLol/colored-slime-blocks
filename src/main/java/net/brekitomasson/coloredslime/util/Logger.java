@@ -1,6 +1,6 @@
-package net.coloredslime.util;
+package net.brekitomasson.coloredslime.util;
 
-import net.coloredslime.ColoredSlime;
+import net.brekitomasson.coloredslime.ColoredSlime;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
