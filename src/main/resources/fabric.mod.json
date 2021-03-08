@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "coloredslime",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "name": "Colored Slime Blocks",
   "description": "Dye your slime blocks!",
   "authors": [
@@ -30,6 +30,6 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": ">=1.16.5"
+    "minecraft": ">=1.16.2"
   }
 }
