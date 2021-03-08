@@ -1,7 +1,6 @@
 package net.brekitomasson.coloredslime;
 
 import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
-import net.brekitomasson.coloredslime.util.RegistryHelper;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
@@ -32,9 +31,5 @@ public class ColoredSlime implements ModInitializer {
             registerSlimeBlock(name, block);
             registerSlimeItem(name, block);
         }
-    }
-
-    public static boolean isColoredSlimeBlock(Block block) {
-        return slimes.contains(block);
     }
 }

@@ -1,6 +1,6 @@
 package net.brekitomasson.coloredslime.mixin;
 
-import net.brekitomasson.coloredslime.ColoredSlime;
+import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonHandler;
@@ -15,14 +15,14 @@ public abstract class PistonHandlerMixin {
     @Inject(method = "isBlockSticky", at = @At("HEAD"), cancellable = true)
     private static void isBlockSticky(Block block, CallbackInfoReturnable<Boolean> ci) {
         // Make the colored slime blocks "sticky".
-        if (ColoredSlime.isColoredSlimeBlock(block)) {
+        if (block instanceof ColoredSlimeBlock) {
             ci.setReturnValue(true);
         }
     }
 
     @Inject(method = "isAdjacentBlockStuck", at = @At("HEAD"), cancellable = true)
     private static void isAdjacentBlockStuck(Block block1, Block block2, CallbackInfoReturnable<Boolean> ci) {
-        boolean block1IsColored = ColoredSlime.isColoredSlimeBlock(block1);
+        boolean block1IsColored = block1 instanceof ColoredSlimeBlock;
 
         if (block1IsColored) {
             // Colored slime blocks do not stick to slime or honey blocks
@@ -31,7 +31,7 @@ public abstract class PistonHandlerMixin {
             }
         }
 
-        boolean block2IsColored = ColoredSlime.isColoredSlimeBlock(block2);
+        boolean block2IsColored = block2 instanceof ColoredSlimeBlock;
 
         if (block2IsColored) {
             // Slime or honey blocks do not stick to colored slime blocks
