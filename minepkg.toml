@@ -11,10 +11,10 @@ manifestVersion = 0
 
 [requirements]
   minecraft = "1.16.5"
-  fabric = "0.11.2"
+  fabric = "0.11.3"
 
 [dependencies]
-  fabric = "*"
+  fabric = "0.33.0"
 
 [dev]
   buildCommand = "./gradlew build"
