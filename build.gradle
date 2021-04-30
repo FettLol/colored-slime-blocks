@@ -26,7 +26,9 @@ processResources {
                 "modid": project.archives_base_name,
                 "mod_version": project.mod_version,
                 "minecraft_version": project.minecraft_version,
+                "minimum_minecraft_version": project.minimum_minecraft_version,
                 "loader_version": project.loader_version,
+                "minimum_loader_version": project.minimum_loader_version,
                 "fabric_version": project.fabric_version,
                 "namespace": project.maven_group
         )
