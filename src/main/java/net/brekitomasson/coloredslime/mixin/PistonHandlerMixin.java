@@ -1,7 +1,9 @@
 package net.brekitomasson.coloredslime.mixin;
 
 import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
+import net.brekitomasson.coloredslime.util.Helpers;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonHandler;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,27 +15,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PistonHandlerMixin {
 
     @Inject(method = "isBlockSticky", at = @At("HEAD"), cancellable = true)
-    private static void isBlockSticky(Block block, CallbackInfoReturnable<Boolean> ci) {
-        // Make the colored slime blocks "sticky".
-        if (block instanceof ColoredSlimeBlock) {
-            ci.setReturnValue(true);
+    private static void isBlockSticky(BlockState state, CallbackInfoReturnable cir) {
+        if (state.getBlock() instanceof ColoredSlimeBlock) {
+            cir.setReturnValue(true);
         }
     }
 
     @Inject(method = "isAdjacentBlockStuck", at = @At("HEAD"), cancellable = true)
-    private static void isAdjacentBlockStuck(Block block1, Block block2, CallbackInfoReturnable<Boolean> ci) {
-        boolean block1IsColored = block1 instanceof ColoredSlimeBlock;
+    private static void isAdjacentBlockStuck(BlockState blockState1, BlockState blockState2, CallbackInfoReturnable<Boolean> ci) {
+        Block block1 = blockState1.getBlock();
+        Block block2 = blockState2.getBlock();
 
-        if (block1IsColored) {
+        if (Helpers.isColoredSlime(block1)) {
             // Colored slime blocks do not stick to slime or honey blocks
             if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK) {
                 ci.setReturnValue(false);
             }
         }
 
-        boolean block2IsColored = block2 instanceof ColoredSlimeBlock;
-
-        if (block2IsColored) {
+        if (Helpers.isColoredSlime(block2)) {
             // Slime or honey blocks do not stick to colored slime blocks
             if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK) {
                 ci.setReturnValue(false);
@@ -41,8 +41,9 @@ public abstract class PistonHandlerMixin {
         }
 
         // Colored slime blocks do not stick to colored slime blocks of other colors
-        if (block1 != block2 && block1IsColored && block2IsColored) {
+        if (block1 != block2 && Helpers.isColoredSlime(block1) && Helpers.isColoredSlime(block2)) {
             ci.setReturnValue(false);
         }
     }
+
 }

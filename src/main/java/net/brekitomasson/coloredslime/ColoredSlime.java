@@ -1,6 +1,7 @@
 package net.brekitomasson.coloredslime;
 
 import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
+import net.brekitomasson.coloredslime.util.Helpers;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
@@ -21,23 +22,15 @@ public class ColoredSlime implements ModInitializer {
         return new Identifier(MOD_ID, path);
     }
 
-    public static final Map<DyeColor, Block> slimeBlocks;
-
-    static {
-        EnumMap<DyeColor, Block> temp = new EnumMap<>(DyeColor.class);
-
-        for (DyeColor color : DyeColor.values()) {
-            temp.put(color, new ColoredSlimeBlock(color));
-        }
-
-        slimeBlocks = Collections.unmodifiableMap(temp);
-    }
+    public static final Map<DyeColor, Block> slimeBlocks = Helpers.generateSlimeBlocks();
 
     @Override
     public void onInitialize() {
         for (DyeColor color : DyeColor.values()) {
             String name = color.name().toLowerCase() + "_slime_block";
             Block block = slimeBlocks.get(color);
+
+            System.out.println("Registered " + color.name() + " Slime Block");
 
             registerSlimeBlock(name, block);
             registerSlimeItem(name, block);
