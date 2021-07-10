@@ -1,0 +1,1 @@
+For a full changelog, please see the [commit history](https://github.com/FettLol/ColoredSlimeBlocks/commits/master) of the repository.
