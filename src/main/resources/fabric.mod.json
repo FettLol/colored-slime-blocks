@@ -1,35 +1,33 @@
 {
   "schemaVersion": 1,
-  "id": "${modid}",
-  "version": "${mod_version}",
-
+  "id": "coloredslime",
+  "version": "${version}",
   "name": "Colored Slime Blocks",
   "description": "Dye your slime blocks!",
-  "authors": ["Breki Tomasson"],
+  "authors": [
+    "Breki Tomasson"
+  ],
   "contact": {
     "homepage": "https://github.com/BrekiTomasson/ColoredSlimeBlocks",
     "sources": "https://github.com/BrekiTomasson/ColoredSlimeBlocks"
   },
-
   "license": "MIT",
-  "icon": "assets/${modid}/icon.png",
-
+  "icon": "assets/coloredslime/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "${namespace}.coloredslime.ColoredSlime"
+      "net.brekitomasson.coloredslime.ColoredSlime"
     ],
     "client": [
-      "${namespace}.coloredslime.ColoredSlimeClient"
+      "net.brekitomasson.coloredslime.ColoredSlimeClient"
     ]
   },
   "mixins": [
     "coloredslime.mixins.json"
   ],
-
   "depends": {
-    "fabricloader": ">=${minimum_loader_version}",
+    "fabricloader": ">=0.11.1",
     "fabric": "*",
-    "minecraft": ">=${minimum_minecraft_version}"
+    "minecraft": ">=1.17"
   }
 }
