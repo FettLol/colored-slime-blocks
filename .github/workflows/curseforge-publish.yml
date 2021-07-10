@@ -23,7 +23,7 @@ jobs:
       - name: Publish release on Curseforge
         env:
           CURSE_API_KEY: ${{ secrets.CURSE }}
-        run: ./gradlew build publish curseforgePublish --stacktrace --no-daemon
+        run: ./gradlew build publish curseforge --stacktrace --no-daemon
 
       - name: Clean Gradle Cache
         if: steps.cache-packages.outputs.cache-hit != 'true'
