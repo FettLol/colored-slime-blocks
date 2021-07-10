@@ -1,10 +1,12 @@
+
+# Preview of the minepkg.toml format! Could break anytime!
 manifestVersion = 0
 
 [package]
   type = "mod"
   name = "coloredslime"
   description = "Dye your slime blocks!"
-  version = "1.2.5"
+  version = "1.2.6"
   platform = "fabric"
   license = "MIT"
 
