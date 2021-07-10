@@ -64,9 +64,9 @@ jobs:
       - name: Setting mod version
         if: ${{ matrix.java == '16' }}
         run: |
-          cat $GITHUB_WORKSPACE/gradle.properties | grep ^archives_base_name= >> $GITHUB_ENV
-          cat $GITHUB_WORKSPACE/gradle.properties | grep ^minecraft_version= >> $GITHUB_ENV
-          cat $GITHUB_WORKSPACE/gradle.properties | grep ^mod_version= >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^archives_base_name =" >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^minecraft_version =" >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^mod_version =" >> $GITHUB_ENV
       - name: Create package name
         if: ${{ matrix.java == '16' }}
         run: echo "package_name=[${{ env.minecraft_version }}] ${{ env.archives_base_name}}-${{ env.mod_version}}.${{ github.run_number }}" >> $GITHUB_ENV
