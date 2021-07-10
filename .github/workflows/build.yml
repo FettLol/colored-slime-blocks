@@ -76,10 +76,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.package_name }}
-          path: |
-            **/build/libs/
-            !build/libs/
-            !**/*-dev.jar
-            !**/*-shadow.jar
-            !**/*-transformProduction*.jar
-            !**/testmod*/
+          path: build/libs/

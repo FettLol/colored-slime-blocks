@@ -1,8 +1,5 @@
 name: Publish to Minepkg.io
-
-on:
-  release:
-    types: [created]
+on: [release]
 
 jobs:
   publish:

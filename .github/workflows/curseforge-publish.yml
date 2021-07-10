@@ -1,5 +1,5 @@
 name: Publish to Curseforge.com
-on: [pull_request, push]
+on: [release]
 
 jobs:
   publish:

@@ -64,9 +64,6 @@ curseforge {
                 uploadTask.dependsOn("build")
             }
         }
-        options {
-            debug = true
-        }
     }
 }
 
