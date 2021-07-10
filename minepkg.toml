@@ -6,7 +6,7 @@ manifestVersion = 0
   type = "mod"
   name = "coloredslime"
   description = "Dye your slime blocks!"
-  version = "1.2.4"
+  version = "1.2.5"
   platform = "fabric"
   license = "MIT"
 
