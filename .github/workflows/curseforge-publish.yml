@@ -1,8 +1,5 @@
-name: minepkg publish
-
-on:
-  release:
-    types: [created]
+name: Publish to Curseforge.com
+on: [pull_request, push]
 
 jobs:
   publish:

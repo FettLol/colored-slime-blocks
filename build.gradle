@@ -58,7 +58,7 @@ curseforge {
                 requiredDependency "fabric-api"
             }
             mainArtifact(remapJar.archivePath) {
-                displayName = "[Fabric $rootProject.supported_version] v$project.version"
+                displayName = "[Fabric $project.minecraft_version] v$project.version"
             }
             afterEvaluate {
                 uploadTask.dependsOn("build")
