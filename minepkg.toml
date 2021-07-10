@@ -1,13 +1,16 @@
+
+# Preview of the minepkg.toml format! Could break anytime!
 manifestVersion = 0
 
 [package]
   type = "mod"
   name = "coloredslime"
   description = "Dye your slime blocks!"
-  version = "1.2.3"
+  version = "1.2.4"
   platform = "fabric"
   license = "MIT"
 
+# These are global requirements
 [requirements]
   minecraft = "~1.17"
 
