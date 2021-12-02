@@ -13,5 +13,10 @@ public class ColoredSlimeClient implements ClientModInitializer {
             RenderLayer.getTranslucent(),
             ColoredSlime.slimeBlocks.values().toArray(new Block[0])
         );
+
+        BlockRenderLayerMap.INSTANCE.putBlocks(
+            RenderLayer.getTranslucent(),
+            ColoredSlime.honeyBlocks.values().toArray(new Block[0])
+        );
     }
 }

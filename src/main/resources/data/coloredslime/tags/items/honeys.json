@@ -1,0 +1,22 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:honey_block",
+        "coloredslime:black_honey_block",
+        "coloredslime:red_honey_block",
+        "coloredslime:green_honey_block",
+        "coloredslime:brown_honey_block",
+        "coloredslime:blue_honey_block",
+        "coloredslime:purple_honey_block",
+        "coloredslime:cyan_honey_block",
+        "coloredslime:light_gray_honey_block",
+        "coloredslime:gray_honey_block",
+        "coloredslime:pink_honey_block",
+        "coloredslime:lime_honey_block",
+        "coloredslime:yellow_honey_block",
+        "coloredslime:light_blue_honey_block",
+        "coloredslime:magenta_honey_block",
+        "coloredslime:orange_honey_block",
+        "coloredslime:white_honey_block"
+    ]
+}

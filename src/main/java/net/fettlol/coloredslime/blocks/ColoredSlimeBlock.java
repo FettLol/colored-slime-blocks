@@ -8,6 +8,6 @@ import static net.minecraft.block.Blocks.SLIME_BLOCK;
 
 public class ColoredSlimeBlock extends SlimeBlock {
     public ColoredSlimeBlock(DyeColor color) {
-        super(FabricBlockSettings.copyOf(SLIME_BLOCK).materialColor(color).nonOpaque());
+        super(FabricBlockSettings.copyOf(SLIME_BLOCK).mapColor(color).nonOpaque());
     }
 }

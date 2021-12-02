@@ -8,8 +8,8 @@ import net.minecraft.util.Identifier;
 
 import java.util.Map;
 
-import static net.fettlol.coloredslime.util.RegistryHelper.registerSlimeBlock;
-import static net.fettlol.coloredslime.util.RegistryHelper.registerSlimeItem;
+import static net.fettlol.coloredslime.util.RegistryHelper.registerBlock;
+import static net.fettlol.coloredslime.util.RegistryHelper.registerItem;
 
 public class ColoredSlime implements ModInitializer {
 
@@ -20,15 +20,23 @@ public class ColoredSlime implements ModInitializer {
     }
 
     public static final Map<DyeColor, Block> slimeBlocks = Helpers.generateSlimeBlocks();
+    public static final Map<DyeColor, Block> honeyBlocks = Helpers.generateHoneyBlocks();
 
     @Override
     public void onInitialize() {
         for (DyeColor color : DyeColor.values()) {
-            String name = color.name().toLowerCase() + "_slime_block";
-            Block block = slimeBlocks.get(color);
 
-            registerSlimeBlock(name, block);
-            registerSlimeItem(name, block);
+            // Register this color's slime block and item.
+            String slimeName = color.name().toLowerCase() + "_slime_block";
+            Block slimeBlock = slimeBlocks.get(color);
+            registerBlock(slimeName, slimeBlock);
+            registerItem(slimeName, slimeBlock);
+
+            // Register this color's honey block and item.
+            String honeyName = color.name().toLowerCase() + "_honey_block";
+            Block honeyBlock = honeyBlocks.get(color);
+            registerBlock(honeyName, honeyBlock);
+            registerItem(honeyName, honeyBlock);
         }
     }
 }

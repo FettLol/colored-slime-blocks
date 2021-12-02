@@ -1,5 +1,6 @@
 package net.fettlol.coloredslime.util;
 
+import net.fettlol.coloredslime.blocks.ColoredHoneyBlock;
 import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
@@ -14,6 +15,10 @@ public class Helpers {
         return block instanceof ColoredSlimeBlock;
     }
 
+    public static boolean isColoredHoney(Block block) {
+        return block instanceof ColoredHoneyBlock;
+    }
+
     public static Map<DyeColor, Block> generateSlimeBlocks() {
         EnumMap<DyeColor, Block> slimeBlocks = new EnumMap<>(DyeColor.class);
 
@@ -22,6 +27,16 @@ public class Helpers {
         }
 
         return Collections.unmodifiableMap(slimeBlocks);
+    }
+
+    public static Map<DyeColor, Block> generateHoneyBlocks() {
+        EnumMap<DyeColor, Block> honeyBlocks = new EnumMap<>(DyeColor.class);
+
+        for (DyeColor color : DyeColor.values()) {
+            honeyBlocks.put(color, new ColoredHoneyBlock(color));
+        }
+
+        return Collections.unmodifiableMap(honeyBlocks);
     }
 
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "honeys",
+  "pattern": [
+    "SSS",
+    "SDS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "tag": "coloredslime:honeys"
+    },
+    "D": {
+      "item": "minecraft:black_dye"
+    }
+  },
+  "result": {
+    "item": "coloredslime:black_honey_block",
+    "count": 8
+  }
+}
