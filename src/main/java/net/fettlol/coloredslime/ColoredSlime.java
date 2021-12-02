@@ -1,6 +1,6 @@
-package net.brekitomasson.coloredslime;
+package net.fettlol.coloredslime;
 
-import net.brekitomasson.coloredslime.util.Helpers;
+import net.fettlol.coloredslime.util.Helpers;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
@@ -8,8 +8,8 @@ import net.minecraft.util.Identifier;
 
 import java.util.Map;
 
-import static net.brekitomasson.coloredslime.util.RegistryHelper.registerSlimeBlock;
-import static net.brekitomasson.coloredslime.util.RegistryHelper.registerSlimeItem;
+import static net.fettlol.coloredslime.util.RegistryHelper.registerSlimeBlock;
+import static net.fettlol.coloredslime.util.RegistryHelper.registerSlimeItem;
 
 public class ColoredSlime implements ModInitializer {
 

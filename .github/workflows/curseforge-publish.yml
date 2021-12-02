@@ -5,14 +5,18 @@ on:
 
 jobs:
   publish:
+    strategy:
+      matrix:
+        java: [16]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up JDK 16
-        uses: actions/setup-java@v1
+      - name: Setup JDK ${{ matrix.java }}
+        uses: actions/setup-java@v2
         with:
-          java-version: 16
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
 
       - name: Cache packages
         id: cache-packages

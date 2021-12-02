@@ -1,6 +1,6 @@
-package net.brekitomasson.coloredslime.util;
+package net.fettlol.coloredslime.util;
 
-import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
+import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
 

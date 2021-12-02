@@ -1,4 +1,4 @@
-package net.brekitomasson.coloredslime;
+package net.fettlol.coloredslime;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

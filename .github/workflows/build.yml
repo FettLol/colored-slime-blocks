@@ -5,7 +5,7 @@ jobs:
   # Make sure the Gradle Wrapper validates.
   validate-gradle:
     name: "Validate Gradle Wrapper"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         java: [16]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'adopt'
+          distribution: 'temurin'
 
       - name: Cache Gradle Wrapper
         uses: actions/cache@v2

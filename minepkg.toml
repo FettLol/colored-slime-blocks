@@ -9,11 +9,14 @@ manifestVersion = 0
   version = "1.2.6"
   platform = "fabric"
   license = "MIT"
+  source = "https://github.com/FettLol/colored-slime-blocks"
+  homepage = "https://github.com/FettLol/colored-slime-blocks"
+  author = "Breki Tomasson <breki.tomasson@gmail.com>"
 
 # These are global requirements
 [requirements]
-  minecraft = "~1.17"
-  fabric = "~0.11.3"
+  minecraft = ">=1.18"
+  fabricLoader = ">=0.12.6"
 
 [dependencies]
   fabric = "*"

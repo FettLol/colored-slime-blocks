@@ -1,7 +1,7 @@
-package net.brekitomasson.coloredslime.mixin;
+package net.fettlol.coloredslime.mixin;
 
-import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
-import net.brekitomasson.coloredslime.util.Helpers;
+import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
+import net.fettlol.coloredslime.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

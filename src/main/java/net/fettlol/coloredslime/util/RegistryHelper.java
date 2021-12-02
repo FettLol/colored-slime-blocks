@@ -1,6 +1,6 @@
-package net.brekitomasson.coloredslime.util;
+package net.fettlol.coloredslime.util;
 
-import net.brekitomasson.coloredslime.ColoredSlime;
+import net.fettlol.coloredslime.ColoredSlime;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;

@@ -8,26 +8,26 @@
     "Breki Tomasson"
   ],
   "contact": {
-    "homepage": "https://github.com/BrekiTomasson/ColoredSlimeBlocks",
-    "sources": "https://github.com/BrekiTomasson/ColoredSlimeBlocks"
+    "homepage": "https://github.com/FettLol/colored-slime-blocks",
+    "sources": "https://github.com/FettLol/colored-slime-blocks"
   },
   "license": "MIT",
   "icon": "assets/coloredslime/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.brekitomasson.coloredslime.ColoredSlime"
+      "net.fettlol.coloredslime.ColoredSlime"
     ],
     "client": [
-      "net.brekitomasson.coloredslime.ColoredSlimeClient"
+      "net.fettlol.coloredslime.ColoredSlimeClient"
     ]
   },
   "mixins": [
     "coloredslime.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.1",
+    "fabricloader": ">=0.12.6",
     "fabric": "*",
-    "minecraft": ">=1.17"
+    "minecraft": ">=1.18"
   }
 }

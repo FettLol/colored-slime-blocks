@@ -1,4 +1,4 @@
-package net.brekitomasson.coloredslime.blocks;
+package net.fettlol.coloredslime.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.SlimeBlock;
