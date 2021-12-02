@@ -1,10 +1,10 @@
 plugins {
     id 'fabric-loom' version '0.10-SNAPSHOT'
     id 'maven-publish'
-    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -36,40 +36,14 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archives_base_name}" }
-    }
-}
-
-curseforge {
-    if (project.hasProperty("CURSE_API_KEY") || System.getenv("CURSE_API_KEY") != null) {
-
-        apiKey = project.hasProperty("CURSE_API_KEY") ? project.property("CURSE_API_KEY") : System.getenv("CURSE_API_KEY")
-        project {
-            addGameVersion "${project.minecraft_version}"
-            addGameVersion "Java 16"
-            addGameVersion "Fabric"
-            id = "418367"
-            changelogType = "markdown"
-            changelog = file("CHANGELOG_TEMPLATE.md")
-            releaseType = "release"
-            relations {
-                requiredDependency "fabric-api"
-            }
-            mainArtifact(remapJar.archivePath) {
-                displayName = "[Fabric $project.minecraft_version] v$project.version"
-            }
-            afterEvaluate {
-                uploadTask.dependsOn("build")
-            }
-        }
+        rename { "${it}_${project.archivesBaseName}" }
     }
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact(remapJar) { builtBy remapJar }
-            artifact(sourcesJar) { builtBy remapSourcesJar }
+            from components.java
         }
     }
 
