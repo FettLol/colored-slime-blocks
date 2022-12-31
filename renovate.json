@@ -1,4 +1,4 @@
 {
   "extends": ["config:base"],
-  "ignoreDeps": ["net.fabricmc:fabric-loader"]
+  "ignoreDeps": ["net.fabricmc:fabric-loader", "net.fabricmc.fabric-api:fabric-api"]
 }
