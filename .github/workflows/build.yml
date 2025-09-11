@@ -18,8 +18,8 @@ jobs:
     name: "Build"
     strategy:
       matrix:
-        java: [17]
-    runs-on: ubuntu-24.04
+        java: [21]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -62,17 +62,15 @@ jobs:
           rm -f  $HOME/.gradle/caches/journal-1/file-access.bin
 
       - name: Setting mod version
-        if: ${{ matrix.java == '17' }}
         run: |
           cat $GITHUB_WORKSPACE/gradle.properties | grep "^archives_base_name =" | sed 's/ //g' >> $GITHUB_ENV
           cat $GITHUB_WORKSPACE/gradle.properties | grep "^minecraft_version =" | sed 's/ //g' >> $GITHUB_ENV
           cat $GITHUB_WORKSPACE/gradle.properties | grep "^mod_version =" | sed 's/ //g' >> $GITHUB_ENV
+
       - name: Create package name
-        if: ${{ matrix.java == '17' }}
         run: echo "package_name=[${{ env.minecraft_version }}] ${{ env.archives_base_name }}-${{ env.mod_version }}.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Capture build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '17' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.package_name }}

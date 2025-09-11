@@ -1,4 +1,11 @@
 {
   "extends": ["config:base"],
-  "ignoreDeps": ["net.fabricmc:fabric-loader", "net.fabricmc.fabric-api:fabric-api"]
+  "ignoreDeps": ["net.fabricmc:fabric-loader", "net.fabricmc.fabric-api:fabric-api"],
+  "ignorePlugins": true,
+  "packageRules": [
+    {
+      "matchPackageNames": ["gradle"],
+      "enabled": false
+    }
+  ]
 }
