@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "coloredslime",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Colored Slime Blocks",
   "description": "Dye your slime blocks!",
   "authors": [
