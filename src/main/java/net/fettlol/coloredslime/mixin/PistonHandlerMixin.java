@@ -17,7 +17,7 @@ public abstract class PistonHandlerMixin {
 
     @Inject(method = "isBlockSticky", at = @At("HEAD"), cancellable = true)
     private static void isBlockSticky(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (state.getBlock() instanceof ColoredSlimeBlock  || state.getBlock() instanceof ColoredHoneyBlock) {
+        if (Helpers.isColoredSlime(state.getBlock()) || Helpers.isColoredHoney(state.getBlock())) {
             cir.setReturnValue(true);
         }
     }
