@@ -40,14 +40,14 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 
 		@Override
 		protected void configure(RegistryWrapper.WrapperLookup arg) {
-			var slimeBuilder = getOrCreateTagBuilder(ColoredSlime.SLIMES_BLOCK_TAG);
-			slimeBuilder.add(Blocks.SLIME_BLOCK);
+			var slimeBuilder = getTagBuilder(ColoredSlime.SLIMES_BLOCK_TAG);
+			slimeBuilder.add(Registries.BLOCK.getId(Blocks.SLIME_BLOCK));
 			for (DyeColor color : DyeColor.values()) {
 				slimeBuilder.add(Helpers.getColoredSlimeId(color));
 			}
 
-			var honeyBuilder = getOrCreateTagBuilder(ColoredSlime.HONEYS_BLOCK_TAG);
-			honeyBuilder.add(Blocks.HONEY_BLOCK);
+			var honeyBuilder = getTagBuilder(ColoredSlime.HONEYS_BLOCK_TAG);
+			honeyBuilder.add(Registries.BLOCK.getId(Blocks.HONEY_BLOCK));
 			for (DyeColor color : DyeColor.values()) {
 				honeyBuilder.add(Helpers.getColoredHoneyId(color));
 			}
