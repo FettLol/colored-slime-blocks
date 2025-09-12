@@ -31,12 +31,14 @@ public abstract class PistonHandlerMixin {
         if (Helpers.isColoredSlime(block1)) {
             if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK || Helpers.isColoredHoney(block2)) {
                 ci.setReturnValue(false);
+                return;
             }
         }
 
         if (Helpers.isColoredSlime(block2)) {
             if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK || Helpers.isColoredHoney(block1)) {
                 ci.setReturnValue(false);
+                return;
             }
         }
 
@@ -44,12 +46,14 @@ public abstract class PistonHandlerMixin {
         if (Helpers.isColoredHoney(block1)) {
             if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK || Helpers.isColoredSlime(block2)) {
                 ci.setReturnValue(false);
+                return;
             }
         }
 
         if (Helpers.isColoredHoney(block2)) {
             if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK || Helpers.isColoredSlime(block1)) {
                 ci.setReturnValue(false);
+                return;
             }
         }
 
@@ -57,6 +61,7 @@ public abstract class PistonHandlerMixin {
         // do stick to colored slime blocks of the SAME color.
         if (block1 != block2 && Helpers.isColoredSlime(block1) && Helpers.isColoredSlime(block2)) {
             ci.setReturnValue(false);
+            return;
         }
 
         // Colored honey blocks do not stick to colored honey blocks of other colors, but they
