@@ -1,5 +1,6 @@
 package net.fettlol.coloredslime;
 
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -8,9 +9,11 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fettlol.coloredslime.util.Helpers;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeGenerator;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.client.data.BlockStateModelGenerator;
+import net.minecraft.client.data.ItemModelGenerator;
+import net.minecraft.data.recipe.RecipeExporter;
+import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
@@ -27,6 +30,7 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider((output, registriesFuture) -> new ItemTagGenerator(output, registriesFuture, blockTagGenerator));
 		pack.addProvider(RecipeProvider::new);
 		pack.addProvider(BlockLootTableProvider::new);
+		pack.addProvider(ModelGenerator::new);
 	}
 
 	private static class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
@@ -113,6 +117,25 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 			for (DyeColor color : DyeColor.values()) {
 				addDrop(ColoredSlime.SLIME_BLOCKS.get(color), ColoredSlime.SLIME_BLOCK_ITEMS.get(color));
 				addDrop(ColoredSlime.HONEY_BLOCKS.get(color), ColoredSlime.HONEY_BLOCK_ITEMS.get(color));
+			}
+		}
+	}
+
+	private static class ModelGenerator extends FabricModelProvider {
+		public ModelGenerator(FabricDataOutput output) {
+			super(output);
+		}
+
+		@Override
+		public void generateBlockStateModels(BlockStateModelGenerator generator) {
+
+		}
+
+		@Override
+		public void generateItemModels(ItemModelGenerator generator) {
+			for (DyeColor color : DyeColor.values()) {
+				generator.register(ColoredSlime.SLIME_BLOCK_ITEMS.get(color));
+				generator.register(ColoredSlime.HONEY_BLOCK_ITEMS.get(color));
 			}
 		}
 	}
