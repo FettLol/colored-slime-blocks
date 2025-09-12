@@ -26,8 +26,8 @@
     "coloredslime.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.12.6",
+    "fabricloader": "${fabric_loader_range}",
     "fabric": "*",
-    "minecraft": ">=1.18"
+    "minecraft": "${minecraft_version_range}"
   }
 }
