@@ -1,8 +1,5 @@
 package net.fettlol.coloredslime.mixin;
 
-import net.fettlol.coloredslime.blocks.ColoredHoneyBlock;
-import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
-import net.fettlol.coloredslime.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -12,12 +9,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import static net.fettlol.coloredslime.util.Helpers.isColoredHoney;
+import static net.fettlol.coloredslime.util.Helpers.isColoredSlime;
+
 @Mixin(value = PistonHandler.class, priority = 450)
 public abstract class PistonHandlerMixin {
 
     @Inject(method = "isBlockSticky", at = @At("HEAD"), cancellable = true)
     private static void isBlockSticky(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (Helpers.isColoredSlime(state.getBlock()) || Helpers.isColoredHoney(state.getBlock())) {
+        if (isColoredSlime(state.getBlock()) || isColoredHoney(state.getBlock())) {
             cir.setReturnValue(true);
         }
     }
@@ -28,30 +28,30 @@ public abstract class PistonHandlerMixin {
         Block block2 = blockState2.getBlock();
 
         // Colored Slime Blocks do not stick to Slime, Honey or Colored Honey
-        if (Helpers.isColoredSlime(block1)) {
-            if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK || Helpers.isColoredHoney(block2)) {
+        if (isColoredSlime(block1)) {
+            if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK || isColoredHoney(block2)) {
                 ci.setReturnValue(false);
                 return;
             }
         }
 
-        if (Helpers.isColoredSlime(block2)) {
-            if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK || Helpers.isColoredHoney(block1)) {
+        if (isColoredSlime(block2)) {
+            if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK || isColoredHoney(block1)) {
                 ci.setReturnValue(false);
                 return;
             }
         }
 
         // Colored Honey Blocks do not stick to Slime, Honey or Colored Slime
-        if (Helpers.isColoredHoney(block1)) {
-            if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK || Helpers.isColoredSlime(block2)) {
+        if (isColoredHoney(block1)) {
+            if (block2 == Blocks.SLIME_BLOCK || block2 == Blocks.HONEY_BLOCK || isColoredSlime(block2)) {
                 ci.setReturnValue(false);
                 return;
             }
         }
 
-        if (Helpers.isColoredHoney(block2)) {
-            if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK || Helpers.isColoredSlime(block1)) {
+        if (isColoredHoney(block2)) {
+            if (block1 == Blocks.SLIME_BLOCK || block1 == Blocks.HONEY_BLOCK || isColoredSlime(block1)) {
                 ci.setReturnValue(false);
                 return;
             }
@@ -59,14 +59,14 @@ public abstract class PistonHandlerMixin {
 
         // Colored slime blocks do not stick to colored slime blocks of other colors, but they
         // do stick to colored slime blocks of the SAME color.
-        if (block1 != block2 && Helpers.isColoredSlime(block1) && Helpers.isColoredSlime(block2)) {
+        if (block1 != block2 && isColoredSlime(block1) && isColoredSlime(block2)) {
             ci.setReturnValue(false);
             return;
         }
 
         // Colored honey blocks do not stick to colored honey blocks of other colors, but they
         // do stick to colored honey blocks of the SAME color.
-        if (block1 != block2 && Helpers.isColoredHoney(block1) && Helpers.isColoredHoney(block2)) {
+        if (block1 != block2 && isColoredHoney(block1) && isColoredHoney(block2)) {
             ci.setReturnValue(false);
         }
     }

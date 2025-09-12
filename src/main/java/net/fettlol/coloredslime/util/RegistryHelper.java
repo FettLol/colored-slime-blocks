@@ -2,7 +2,9 @@ package net.fettlol.coloredslime.util;
 
 import net.fettlol.coloredslime.ColoredSlime;
 import net.minecraft.block.Block;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
 
 public class RegistryHelper {

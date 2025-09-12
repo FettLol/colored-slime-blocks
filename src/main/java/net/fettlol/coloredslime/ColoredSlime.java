@@ -1,7 +1,7 @@
 package net.fettlol.coloredslime;
 
-import net.fettlol.coloredslime.util.Helpers;
 import net.fabricmc.api.ModInitializer;
+import net.fettlol.coloredslime.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -19,8 +19,8 @@ public class ColoredSlime implements ModInitializer {
         return new Identifier(MOD_ID, path);
     }
 
-    public static final Map<DyeColor, Block> slimeBlocks = Helpers.generateSlimeBlocks();
-    public static final Map<DyeColor, Block> honeyBlocks = Helpers.generateHoneyBlocks();
+    public static final Map<DyeColor, Block> SLIME_BLOCKS = Helpers.generateSlimeBlocks();
+    public static final Map<DyeColor, Block> HONEY_BLOCKS = Helpers.generateHoneyBlocks();
 
     @Override
     public void onInitialize() {
@@ -28,13 +28,13 @@ public class ColoredSlime implements ModInitializer {
 
             // Register this color's slime block and item.
             String slimeName = color.name().toLowerCase() + "_slime_block";
-            Block slimeBlock = slimeBlocks.get(color);
+            Block slimeBlock = SLIME_BLOCKS.get(color);
             registerBlock(slimeName, slimeBlock);
             registerItem(slimeName, slimeBlock);
 
             // Register this color's honey block and item.
             String honeyName = color.name().toLowerCase() + "_honey_block";
-            Block honeyBlock = honeyBlocks.get(color);
+            Block honeyBlock = HONEY_BLOCKS.get(color);
             registerBlock(honeyName, honeyBlock);
             registerItem(honeyName, honeyBlock);
         }
