@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "honeys",
+  "key": {
+    "D": {
+      "item": "minecraft:yellow_dye"
+    },
+    "H": {
+      "tag": "coloredslime:honeys"
+    }
+  },
+  "pattern": [
+    "HHH",
+    "HDH",
+    "HHH"
+  ],
+  "result": {
+    "count": 8,
+    "id": "coloredslime:yellow_honey_block"
+  }
+}

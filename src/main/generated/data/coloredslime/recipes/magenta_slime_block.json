@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "slimes",
+  "key": {
+    "D": {
+      "item": "minecraft:magenta_dye"
+    },
+    "S": {
+      "tag": "coloredslime:slimes"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SDS",
+    "SSS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "coloredslime:magenta_slime_block"
+  }
+}

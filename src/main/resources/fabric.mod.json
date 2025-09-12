@@ -20,6 +20,9 @@
     ],
     "client": [
       "net.fettlol.coloredslime.ColoredSlimeClient"
+    ],
+    "fabric-datagen": [
+      "net.fettlol.coloredslime.ColoredSlimeDataGenerator"
     ]
   },
   "mixins": [
