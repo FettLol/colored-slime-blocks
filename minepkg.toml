@@ -6,7 +6,7 @@ manifestVersion = 0
   type = "mod"
   name = "coloredslime"
   description = "Dye your slime blocks!"
-  version = "1.4.0"
+  version = "1.5.0"
   platform = "fabric"
   license = "MIT"
   source = "https://github.com/FettLol/colored-slime-blocks"
@@ -15,8 +15,8 @@ manifestVersion = 0
 
 # These are global requirements
 [requirements]
-  minecraft = ">=1.18"
-  fabricLoader = ">=0.12.6"
+  minecraft = ">=1.17 <=1.19.2"
+  fabricLoader = ">=0.14.25"
 
 [dependencies]
   fabric = "*"
