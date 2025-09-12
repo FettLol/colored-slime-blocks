@@ -28,8 +28,8 @@ public class ColoredSlime implements ModInitializer {
     public static final Map<DyeColor, Block> SLIME_BLOCKS = Helpers.generateSlimeBlocks();
     public static final Map<DyeColor, Block> HONEY_BLOCKS = Helpers.generateHoneyBlocks();
 
-    public static final Map<DyeColor, BlockItem> SLIME_BLOCK_ITEMS = Helpers.generateBlockItems(SLIME_BLOCKS);
-    public static final Map<DyeColor, BlockItem> HONEY_BLOCK_ITEMS = Helpers.generateBlockItems(HONEY_BLOCKS);
+    public static final Map<DyeColor, BlockItem> SLIME_BLOCK_ITEMS = Helpers.generateBlockItems(SLIME_BLOCKS, Helpers::getColoredSlimeId);
+    public static final Map<DyeColor, BlockItem> HONEY_BLOCK_ITEMS = Helpers.generateBlockItems(HONEY_BLOCKS, Helpers::getColoredHoneyId);
 
     public static final TagKey<Block> SLIMES_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, makeID("slimes"));
     public static final TagKey<Block> HONEYS_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, makeID("honeys"));

@@ -6,12 +6,15 @@ import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class Helpers {
 
@@ -43,12 +46,15 @@ public class Helpers {
         return Collections.unmodifiableMap(honeyBlocks);
     }
 
-    public static Map<DyeColor, BlockItem> generateBlockItems(Map<DyeColor, Block> blocks) {
+    public static Map<DyeColor, BlockItem> generateBlockItems(Map<DyeColor, Block> blocks, Function<DyeColor, Identifier> getId) {
         EnumMap<DyeColor, BlockItem> blockItems = new EnumMap<>(DyeColor.class);
 
         for (DyeColor color : DyeColor.values()) {
             blockItems.put(color, new BlockItem(blocks.get(color),
-                new Item.Settings().maxCount(64)
+                new Item.Settings()
+                    .maxCount(64)
+                    .registryKey(RegistryKey.of(RegistryKeys.ITEM, getId.apply(color)))
+                    .useBlockPrefixedTranslationKey()
             ));
         }
 

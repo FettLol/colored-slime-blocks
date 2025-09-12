@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "honeys",
   "key": {
-    "D": {
-      "item": "minecraft:gray_dye"
-    },
-    "H": {
-      "tag": "coloredslime:honeys"
-    }
+    "D": "minecraft:gray_dye",
+    "H": "#coloredslime:honeys"
   },
   "pattern": [
     "HHH",

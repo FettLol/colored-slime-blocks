@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "slimes",
   "key": {
-    "D": {
-      "item": "minecraft:white_dye"
-    },
-    "S": {
-      "tag": "coloredslime:slimes"
-    }
+    "D": "minecraft:white_dye",
+    "S": "#coloredslime:slimes"
   },
   "pattern": [
     "SSS",

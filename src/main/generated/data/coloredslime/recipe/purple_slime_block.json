@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "slimes",
   "key": {
-    "D": {
-      "item": "minecraft:purple_dye"
-    },
-    "S": {
-      "tag": "coloredslime:slimes"
-    }
+    "D": "minecraft:purple_dye",
+    "S": "#coloredslime:slimes"
   },
   "pattern": [
     "SSS",

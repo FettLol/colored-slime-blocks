@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fettlol.coloredslime.util.Helpers;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeGenerator;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
@@ -24,7 +25,7 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = generator.createPack();
 		BlockTagGenerator blockTagGenerator = pack.addProvider(BlockTagGenerator::new);
 		pack.addProvider((output, registriesFuture) -> new ItemTagGenerator(output, registriesFuture, blockTagGenerator));
-		pack.addProvider(RecipeGenerator::new);
+		pack.addProvider(RecipeProvider::new);
 		pack.addProvider(BlockLootTableProvider::new);
 	}
 
@@ -61,34 +62,44 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		}
 	}
 
-	private static class RecipeGenerator extends FabricRecipeProvider {
-		public RecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+	private static class RecipeProvider extends FabricRecipeProvider {
+		public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
 			super(output, registriesFuture);
 		}
 
 		@Override
-		public void generate(RecipeExporter exporter) {
-			for (DyeColor color : DyeColor.values()) {
-				ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ColoredSlime.SLIME_BLOCKS.get(color), 8)
-					.group("slimes")
-					.pattern("SSS")
-					.pattern("SDS")
-					.pattern("SSS")
-					.input('S', ColoredSlime.SLIMES_ITEM_TAG)
-					.input('D', Registries.ITEM.get(Helpers.getDyeId(color)))
-					.criterion("has_slime", FabricRecipeProvider.conditionsFromTag(ColoredSlime.SLIMES_ITEM_TAG))
-					.offerTo(exporter);
+		protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup wrapperLookup, RecipeExporter exporter) {
+			return new RecipeGenerator(wrapperLookup, exporter) {
+				@Override
+				public void generate() {
+					for (DyeColor color : DyeColor.values()) {
+						ShapedRecipeJsonBuilder.create(Registries.ITEM, RecipeCategory.REDSTONE, ColoredSlime.SLIME_BLOCKS.get(color), 8)
+							.group("slimes")
+							.pattern("SSS")
+							.pattern("SDS")
+							.pattern("SSS")
+							.input('S', ingredientFromTag(ColoredSlime.SLIMES_ITEM_TAG))
+							.input('D', Registries.ITEM.get(Helpers.getDyeId(color)))
+							.criterion("has_slime", conditionsFromTag(ColoredSlime.SLIMES_ITEM_TAG))
+							.offerTo(exporter);
 
-				ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ColoredSlime.HONEY_BLOCKS.get(color), 8)
-					.group("honeys")
-					.pattern("HHH")
-					.pattern("HDH")
-					.pattern("HHH")
-					.input('H', ColoredSlime.HONEYS_ITEM_TAG)
-					.input('D', Registries.ITEM.get(Helpers.getDyeId(color)))
-					.criterion("has_honey", FabricRecipeProvider.conditionsFromTag(ColoredSlime.HONEYS_ITEM_TAG))
-					.offerTo(exporter);
-			}
+						ShapedRecipeJsonBuilder.create(Registries.ITEM, RecipeCategory.REDSTONE, ColoredSlime.HONEY_BLOCKS.get(color), 8)
+							.group("honeys")
+							.pattern("HHH")
+							.pattern("HDH")
+							.pattern("HHH")
+							.input('H', ingredientFromTag(ColoredSlime.HONEYS_ITEM_TAG))
+							.input('D', Registries.ITEM.get(Helpers.getDyeId(color)))
+							.criterion("has_honey", conditionsFromTag(ColoredSlime.HONEYS_ITEM_TAG))
+							.offerTo(exporter);
+					}
+				}
+			};
+		}
+
+		@Override
+		public String getName() {
+			return "Colored Slime Recipes";
 		}
 	}
 
