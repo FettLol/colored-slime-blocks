@@ -1,9 +1,8 @@
 {
   "extends": ["config:base"],
-  "ignoreDeps": ["net.fabricmc:fabric-loader", "net.fabricmc.fabric-api:fabric-api"],
   "packageRules": [
     {
-      "matchPackageNames": ["gradle", "fabric-loom"],
+      "matchManagers": ["gradle", "gradle-wrapper"],
       "enabled": false
     }
   ]
