@@ -1,3 +1,7 @@
+# 1.7.1
+
+- add Ukrainian (uk_ua) translation, thanks to StarmanMine142!
+
 # 1.7.0
 
 - port to 1.20.6
