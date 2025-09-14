@@ -98,7 +98,7 @@ curseforge {
             toList(project.curseforge_dependencies).each { requiredDependency(it) }
         }
         mainArtifact(remapJar.archiveFile.get().asFile) {
-            displayName = "[Fabric ${minecraftVersionRange}] ${project.mod_version}"
+            displayName = "[Fabric ${minecraftVersionRange}] v${project.mod_version}"
         }
         afterEvaluate {
             uploadTask.dependsOn("build")
