@@ -12,3 +12,7 @@ normal slime block, but they do not stick to normal slime blocks (or other slime
 **... Now also supports Colored Honey Blocks!**
 
 Enjoy!
+
+![](loop.gif)
+
+![](recipe.png)
