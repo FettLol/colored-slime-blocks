@@ -1,3 +1,7 @@
+# 1.5.1
+
+- add Ukrainian (uk_ua) translation, thanks to StarmanMine142!
+
 # 1.5.0
 
 - add German (de_de) translation
