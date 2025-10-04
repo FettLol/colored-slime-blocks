@@ -25,15 +25,14 @@ public class ColoredSlime implements ModInitializer {
     @Override
     public void onInitialize() {
         for (DyeColor color : DyeColor.values()) {
-
             // Register this color's slime block and item.
-            String slimeName = color.name().toLowerCase() + "_slime_block";
+            String slimeName = color.getName() + "_slime_block";
             Block slimeBlock = SLIME_BLOCKS.get(color);
             registerBlock(slimeName, slimeBlock);
             registerItem(slimeName, slimeBlock);
 
             // Register this color's honey block and item.
-            String honeyName = color.name().toLowerCase() + "_honey_block";
+            String honeyName = color.getName() + "_honey_block";
             Block honeyBlock = HONEY_BLOCKS.get(color);
             registerBlock(honeyName, honeyBlock);
             registerItem(honeyName, honeyBlock);
