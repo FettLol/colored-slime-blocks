@@ -1,3 +1,9 @@
+# 1.7.2
+
+The mod now runs in Turkey too!
+
+(fix funny locale dependent bug)
+
 # 1.7.1
 
 - add Ukrainian (uk_ua) translation, thanks to StarmanMine142!
