@@ -62,15 +62,15 @@ public class Helpers {
     }
 
     public static Identifier getColoredSlimeId(DyeColor color) {
-        return ColoredSlime.makeID(color.name().toLowerCase() + "_slime_block");
+        return ColoredSlime.makeID(color.getId() + "_slime_block");
     }
 
     public static Identifier getColoredHoneyId(DyeColor color) {
-        return ColoredSlime.makeID(color.name().toLowerCase() + "_honey_block");
+        return ColoredSlime.makeID(color.getId() + "_honey_block");
     }
 
     public static Identifier getDyeId(DyeColor color) {
-        return Identifier.of("minecraft", color.name().toLowerCase() + "_dye");
+        return Identifier.of("minecraft", color.getId() + "_dye");
     }
 
 }
