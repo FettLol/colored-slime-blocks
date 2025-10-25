@@ -68,7 +68,7 @@ jobs:
         run: echo "package_name=[${{ env.minecraft_version }}] ${{ env.archives_base_name }}-${{ env.mod_version }}.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Capture build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ env.package_name }}
           path: build/libs/
