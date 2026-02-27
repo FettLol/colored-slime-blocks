@@ -70,5 +70,6 @@ jobs:
       - name: Capture build artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.package_name }}
+          archive: false  # directly upload jar file
+          name: ${{ env.package_name }}  # ignored with archive: false
           path: build/libs/
