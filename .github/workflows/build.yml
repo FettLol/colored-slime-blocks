@@ -60,9 +60,9 @@ jobs:
 
       - name: Setting mod version
         run: |
-          cat $GITHUB_WORKSPACE/gradle.properties | grep "^archives_base_name =" | sed 's/ //g' >> $GITHUB_ENV
-          cat $GITHUB_WORKSPACE/gradle.properties | grep "^minecraft_version =" | sed 's/ //g' >> $GITHUB_ENV
-          cat $GITHUB_WORKSPACE/gradle.properties | grep "^mod_version =" | sed 's/ //g' >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^archives_base_name\s*=" | sed 's/\s//g' >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^minecraft_version\s*=" | sed 's/\s//g' >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^mod_version\s*=" | sed 's/\s//g' >> $GITHUB_ENV
 
       - name: Create package name
         run: echo "package_name=[${{ env.minecraft_version }}] ${{ env.archives_base_name }}-${{ env.mod_version }}.${{ github.run_number }}" >> $GITHUB_ENV
