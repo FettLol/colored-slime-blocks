@@ -16,14 +16,14 @@ import static net.fettlol.coloredslime.util.Helpers.isColoredSlime;
 public abstract class PistonHandlerMixin {
 
     @Inject(method = "isBlockSticky", at = @At("HEAD"), cancellable = true)
-    private static void isBlockSticky(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-        if (isColoredSlime(state.getBlock()) || isColoredHoney(state.getBlock())) {
+    private static void isColoredBlockSticky(BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+        if (isColoredSlime(blockState) || isColoredHoney(blockState)) {
             cir.setReturnValue(true);
         }
     }
 
     @Inject(method = "isAdjacentBlockStuck", at = @At("HEAD"), cancellable = true)
-    private static void isAdjacentBlockStuck(BlockState blockState1, BlockState blockState2, CallbackInfoReturnable<Boolean> ci) {
+    private static void isAdjacentColoredBlockStuck(BlockState blockState1, BlockState blockState2, CallbackInfoReturnable<Boolean> ci) {
         Block block1 = blockState1.getBlock();
         Block block2 = blockState2.getBlock();
 
