@@ -1,3 +1,12 @@
+# 1.10.3
+
+Turns out our Colored Slime and Honey providers gave us low quality slime and fake honey that was really just more slime!
+
+- fix Colored Honey blocks being Slime blocks
+- fix Colored Slime and Honey entity push behaviors
+- fix AI behavior surrounding pathing and Breeze jumping for Colored Honey blocks
+- fix Colored Honey landing/collision particles
+
 # 1.10.2
 
 The mod now runs in Turkey too!
