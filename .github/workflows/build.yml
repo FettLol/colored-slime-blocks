@@ -7,8 +7,8 @@ jobs:
     name: "Validate Gradle Wrapper"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: gradle/actions/wrapper-validation@v4
+      - uses: actions/checkout@v6
+      - uses: gradle/actions/wrapper-validation@v5
 
   # Build artifacts and store them.
   build:
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v5
@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Cache Gradle Wrapper
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.gradle/wrapper
           key: gradle-wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/**/*') }}
@@ -36,7 +36,7 @@ jobs:
 
       - name: Cache packages
         id: cache-packages
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.gradle/caches
           key: gradle-packages-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
@@ -60,15 +60,16 @@ jobs:
 
       - name: Setting mod version
         run: |
-          cat $GITHUB_WORKSPACE/gradle.properties | grep "^archives_base_name =" | sed 's/ //g' >> $GITHUB_ENV
-          cat $GITHUB_WORKSPACE/gradle.properties | grep "^minecraft_version =" | sed 's/ //g' >> $GITHUB_ENV
-          cat $GITHUB_WORKSPACE/gradle.properties | grep "^mod_version =" | sed 's/ //g' >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^archives_base_name\s*=" | sed 's/\s//g' >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^minecraft_version\s*=" | sed 's/\s//g' >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep "^mod_version\s*=" | sed 's/\s//g' >> $GITHUB_ENV
 
       - name: Create package name
         run: echo "package_name=[${{ env.minecraft_version }}] ${{ env.archives_base_name }}-${{ env.mod_version }}.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Capture build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.package_name }}
+          archive: false  # directly upload jar file
+          name: ${{ env.package_name }}  # ignored with archive: false
           path: build/libs/

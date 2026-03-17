@@ -3,6 +3,7 @@ package net.fettlol.coloredslime.util;
 import net.fettlol.coloredslime.blocks.ColoredHoneyBlock;
 import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.DyeColor;
 
 import java.util.Collections;
@@ -11,8 +12,16 @@ import java.util.Map;
 
 public class Helpers {
 
+    public static boolean isColoredSlime(BlockState blockState) {
+        return isColoredSlime(blockState.getBlock());
+    }
+
     public static boolean isColoredSlime(Block block) {
         return block instanceof ColoredSlimeBlock;
+    }
+
+    public static boolean isColoredHoney(BlockState blockState) {
+        return isColoredHoney(blockState.getBlock());
     }
 
     public static boolean isColoredHoney(Block block) {
@@ -38,5 +47,6 @@ public class Helpers {
 
         return Collections.unmodifiableMap(honeyBlocks);
     }
+
 
 }
