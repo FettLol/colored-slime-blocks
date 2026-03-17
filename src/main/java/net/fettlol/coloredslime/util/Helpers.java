@@ -4,6 +4,7 @@ import net.fettlol.coloredslime.ColoredSlime;
 import net.fettlol.coloredslime.blocks.ColoredHoneyBlock;
 import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
@@ -18,8 +19,16 @@ import java.util.function.Function;
 
 public class Helpers {
 
+    public static boolean isColoredSlime(BlockState blockState) {
+        return isColoredSlime(blockState.getBlock());
+    }
+
     public static boolean isColoredSlime(Block block) {
         return block instanceof ColoredSlimeBlock;
+    }
+
+    public static boolean isColoredHoney(BlockState blockState) {
+        return isColoredHoney(blockState.getBlock());
     }
 
     public static boolean isColoredHoney(Block block) {
