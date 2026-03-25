@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
     id 'com.modrinth.minotaur' version '2.+'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
@@ -20,9 +20,8 @@ fabricApi {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
@@ -70,7 +69,7 @@ modrinth {
     versionName = 'v' + project.mod_version
     versionNumber = project.mod_version
     versionType = 'release'
-    uploadFile = remapJar
+    uploadFile = jar
     changelog = changelogMd
     gameVersions = minecraftVersions
     loaders = ['fabric']
@@ -97,7 +96,7 @@ curseforge {
         relations {
             toList(project.curseforge_dependencies).each { requiredDependency(it) }
         }
-        mainArtifact(remapJar.archiveFile.get().asFile) {
+        mainArtifact(jar.archiveFile.get().asFile) {
             displayName = "[Fabric ${minecraftVersionRange}] v${project.mod_version}"
         }
         afterEvaluate {

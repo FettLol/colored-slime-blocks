@@ -16,7 +16,7 @@ public abstract class LongJumpTaskMixin {
 		method = "checkExtraStartConditions(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Mob;)Z",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"
+			target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"
 		)
 	)
 	private static boolean isColoredHoneyBlock(boolean original, @Local(argsOnly = true) ServerLevel world, @Local(argsOnly = true) Mob mob) {

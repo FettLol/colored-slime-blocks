@@ -1,6 +1,6 @@
 package net.fettlol.coloredslime.util;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -12,7 +12,7 @@ public class RegistryHelper {
     public static Item registerItem(Identifier id, Item item) {
         Registry.register(BuiltInRegistries.ITEM, id, item);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register(entries -> entries.accept(item));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.REDSTONE_BLOCKS).register(entries -> entries.accept(item));
 
         return item;
     }

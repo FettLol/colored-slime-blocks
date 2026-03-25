@@ -3,10 +3,10 @@ package net.fettlol.coloredslime;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fettlol.coloredslime.util.Helpers;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -25,15 +25,15 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator generator) {
 		FabricDataGenerator.Pack pack = generator.createPack();
-		BlockTagGenerator blockTagGenerator = pack.addProvider(BlockTagGenerator::new);
-		pack.addProvider((output, registriesFuture) -> new ItemTagGenerator(output, registriesFuture, blockTagGenerator));
+		BlockTagsProvider blockTagsProvider = pack.addProvider(BlockTagsProvider::new);
+		pack.addProvider((output, registriesFuture) -> new ItemTagsProvider(output, registriesFuture, blockTagsProvider));
 		pack.addProvider(RecipeProvider::new);
-		pack.addProvider(BlockLootTableProvider::new);
-		pack.addProvider(ModelGenerator::new);
+		pack.addProvider(BlockLootSubProvider::new);
+		pack.addProvider(ModelProvider::new);
 	}
 
-	private static class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
-		public BlockTagGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+	private static class BlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
+		public BlockTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
 			super(output, completableFuture);
 		}
 
@@ -53,9 +53,9 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		}
 	}
 
-	private static class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
-		public ItemTagGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable FabricTagProvider.BlockTagProvider blockTagProvider) {
-			super(output, completableFuture, blockTagProvider);
+	private static class ItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
+		public ItemTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable FabricTagsProvider.BlockTagsProvider blockTagsProvider) {
+			super(output, completableFuture, blockTagsProvider);
 		}
 
 		@Override
@@ -66,7 +66,7 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 	}
 
 	private static class RecipeProvider extends FabricRecipeProvider {
-		public RecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+		public RecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 			super(output, registriesFuture);
 		}
 
@@ -106,8 +106,8 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		}
 	}
 
-	private static class BlockLootTableProvider extends FabricBlockLootTableProvider {
-		protected BlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+	private static class BlockLootSubProvider extends FabricBlockLootSubProvider {
+		protected BlockLootSubProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
 			super(dataOutput, registryLookup);
 		}
 
@@ -120,21 +120,21 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		}
 	}
 
-	private static class ModelGenerator extends FabricModelProvider {
-		public ModelGenerator(FabricDataOutput output) {
+	private static class ModelProvider extends FabricModelProvider {
+		public ModelProvider(FabricPackOutput output) {
 			super(output);
 		}
 
 		@Override
-		public void generateBlockStateModels(BlockModelGenerators generator) {
+		public void generateBlockStateModels(BlockModelGenerators generators) {
 
 		}
 
 		@Override
-		public void generateItemModels(ItemModelGenerators generator) {
+		public void generateItemModels(ItemModelGenerators generators) {
 			for (DyeColor color : DyeColor.values()) {
-				generator.declareCustomModelItem(ColoredSlime.SLIME_BLOCK_ITEMS.get(color));
-				generator.declareCustomModelItem(ColoredSlime.HONEY_BLOCK_ITEMS.get(color));
+				generators.declareCustomModelItem(ColoredSlime.SLIME_BLOCK_ITEMS.get(color));
+				generators.declareCustomModelItem(ColoredSlime.HONEY_BLOCK_ITEMS.get(color));
 			}
 		}
 	}

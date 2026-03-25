@@ -16,12 +16,12 @@ public abstract class PistonBlockEntityMixin {
 	@Shadow
 	private BlockState movedState;
 
-	@ModifyExpressionValue(method = "moveCollidedEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+	@ModifyExpressionValue(method = "moveCollidedEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
 	private static boolean isColoredSlimeBlock(boolean original, @Local(argsOnly = true) PistonMovingBlockEntity blockEntity) {
 		return original || isColoredSlime(blockEntity.getMovedState());
 	}
 
-	@ModifyExpressionValue(method = "isStickyForEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+	@ModifyExpressionValue(method = "isStickyForEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
 	private boolean isColoredHoneyBlock(boolean original) {
 		return original || isColoredHoney(movedState);
 	}

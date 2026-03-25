@@ -14,7 +14,7 @@ import static net.fettlol.coloredslime.util.Helpers.isColoredHoney;
 @Mixin(WalkNodeEvaluator.class)
 public abstract class LandPathNodeMakerMixin {
 	@Definition(id = "blockState", local = @Local(type = BlockState.class))
-	@Definition(id = "is", method = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z")
+	@Definition(id = "is", method = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z")
 	@Definition(id = "HONEY_BLOCK", field = "Lnet/minecraft/world/level/block/Blocks;HONEY_BLOCK:Lnet/minecraft/world/level/block/Block;")
 	@Expression("blockState.is(HONEY_BLOCK)")
 	@ModifyExpressionValue(method = "getPathTypeFromState", at = @At(value = "MIXINEXTRAS:EXPRESSION"))

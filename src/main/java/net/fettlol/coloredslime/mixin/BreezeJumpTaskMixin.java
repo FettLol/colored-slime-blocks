@@ -12,7 +12,7 @@ import static net.fettlol.coloredslime.util.Helpers.isColoredHoney;
 
 @Mixin(LongJump.class)
 public abstract class BreezeJumpTaskMixin {
-	@ModifyExpressionValue(method = "canJumpFromCurrentPosition", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+	@ModifyExpressionValue(method = "canJumpFromCurrentPosition", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
 	private static boolean isColoredHoneyBlock(boolean original, @Local(argsOnly = true) ServerLevel world, @Local(argsOnly = true) Breeze breeze) {
 		return original || isColoredHoney(world.getBlockState(breeze.blockPosition()));
 	}

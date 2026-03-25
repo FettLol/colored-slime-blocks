@@ -24,7 +24,7 @@ public abstract class PistonHandlerMixin {
     }
 
     @Inject(method = "canStickToEachOther", at = @At("HEAD"), cancellable = true)
-    private static void isAdjacentColoredBlockStuck(BlockState blockState1, BlockState blockState2, CallbackInfoReturnable<Boolean> ci) {
+    private static void canStickToEachOtherColoredBlock(BlockState blockState1, BlockState blockState2, CallbackInfoReturnable<Boolean> ci) {
         Block block1 = blockState1.getBlock();
         Block block2 = blockState2.getBlock();
 
