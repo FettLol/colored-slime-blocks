@@ -1,29 +1,29 @@
 package net.fettlol.coloredslime.mixin;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import net.minecraft.block.HoneyBlock;
-import net.minecraft.block.TranslucentBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.HoneyBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(HoneyBlock.class)
-public abstract class HoneyBlockMixin extends TranslucentBlock {
-	public HoneyBlockMixin(Settings settings) {
+public abstract class HoneyBlockMixin extends HalfTransparentBlock {
+	public HoneyBlockMixin(Properties settings) {
 		super(settings);
 	}
 
 	@WrapWithCondition(
-		method = "onLandedUpon",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;sendEntityStatus(Lnet/minecraft/entity/Entity;B)V")
+		method = "fallOn",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;broadcastEntityEvent(Lnet/minecraft/world/entity/Entity;B)V")
 	)
-	public boolean spawnRichColoredHoneyParticles(World instance, Entity entity, byte status) {
-		if (instance instanceof ServerWorld serverWorld) {
-			serverWorld.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, getDefaultState()), entity.getX(), entity.getY(), entity.getZ(), 10, 0, 0, 0, 0);
+	public boolean spawnRichColoredHoneyParticles(Level instance, Entity entity, byte status) {
+		if (instance instanceof ServerLevel serverWorld) {
+			serverWorld.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, defaultBlockState()), entity.getX(), entity.getY(), entity.getZ(), 10, 0, 0, 0, 0);
 			return false;
 		} else {
 			return true;
@@ -31,12 +31,12 @@ public abstract class HoneyBlockMixin extends TranslucentBlock {
 	}
 
 	@WrapWithCondition(
-		method = "addCollisionEffects",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;sendEntityStatus(Lnet/minecraft/entity/Entity;B)V")
+		method = "maybeDoSlideEffects",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;broadcastEntityEvent(Lnet/minecraft/world/entity/Entity;B)V")
 	)
-	public boolean spawnRegularColoredHoneyParticles(World instance, Entity entity, byte status) {
-		if (instance instanceof ServerWorld serverWorld) {
-			serverWorld.spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, getDefaultState()), entity.getX(), entity.getY(), entity.getZ(), 5, 0, 0, 0, 0);
+	public boolean spawnRegularColoredHoneyParticles(Level instance, Entity entity, byte status) {
+		if (instance instanceof ServerLevel serverWorld) {
+			serverWorld.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, defaultBlockState()), entity.getX(), entity.getY(), entity.getZ(), 5, 0, 0, 0, 0);
 			return false;
 		} else {
 			return true;

@@ -1,19 +1,19 @@
 package net.fettlol.coloredslime.blocks;
 
 import net.fettlol.coloredslime.util.Helpers;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.SlimeBlock;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.DyeColor;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.SlimeBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import static net.minecraft.block.Blocks.SLIME_BLOCK;
+import static net.minecraft.world.level.block.Blocks.SLIME_BLOCK;
 
 public class ColoredSlimeBlock extends SlimeBlock {
     public ColoredSlimeBlock(DyeColor color) {
-        super(AbstractBlock.Settings.copy(SLIME_BLOCK)
+        super(BlockBehaviour.Properties.ofFullCopy(SLIME_BLOCK)
             .mapColor(color)
-            .nonOpaque()
-            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Helpers.getColoredSlimeId(color))));
+            .noOcclusion()
+            .setId(ResourceKey.create(Registries.BLOCK, Helpers.getColoredSlimeId(color))));
     }
 }

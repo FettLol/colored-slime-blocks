@@ -2,14 +2,13 @@ package net.fettlol.coloredslime;
 
 import net.fabricmc.api.ModInitializer;
 import net.fettlol.coloredslime.util.Helpers;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import java.util.Map;
 
 import static net.fettlol.coloredslime.util.Helpers.getColoredHoneyId;
@@ -22,7 +21,7 @@ public class ColoredSlime implements ModInitializer {
     public static final String MOD_ID = "coloredslime";
 
     public static Identifier makeID(String path) {
-        return Identifier.of(MOD_ID, path);
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 
     public static final Map<DyeColor, Block> SLIME_BLOCKS = Helpers.generateSlimeBlocks();
@@ -31,11 +30,11 @@ public class ColoredSlime implements ModInitializer {
     public static final Map<DyeColor, BlockItem> SLIME_BLOCK_ITEMS = Helpers.generateBlockItems(SLIME_BLOCKS, Helpers::getColoredSlimeId);
     public static final Map<DyeColor, BlockItem> HONEY_BLOCK_ITEMS = Helpers.generateBlockItems(HONEY_BLOCKS, Helpers::getColoredHoneyId);
 
-    public static final TagKey<Block> SLIMES_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, makeID("slimes"));
-    public static final TagKey<Block> HONEYS_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, makeID("honeys"));
+    public static final TagKey<Block> SLIMES_BLOCK_TAG = TagKey.create(Registries.BLOCK, makeID("slimes"));
+    public static final TagKey<Block> HONEYS_BLOCK_TAG = TagKey.create(Registries.BLOCK, makeID("honeys"));
 
-    public static final TagKey<Item>  SLIMES_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, makeID("slimes"));
-    public static final TagKey<Item>  HONEYS_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, makeID("honeys"));
+    public static final TagKey<Item>  SLIMES_ITEM_TAG = TagKey.create(Registries.ITEM, makeID("slimes"));
+    public static final TagKey<Item>  HONEYS_ITEM_TAG = TagKey.create(Registries.ITEM, makeID("honeys"));
 
     @Override
     public void onInitialize() {

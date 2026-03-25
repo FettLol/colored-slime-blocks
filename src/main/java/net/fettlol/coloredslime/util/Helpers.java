@@ -3,15 +3,14 @@ package net.fettlol.coloredslime.util;
 import net.fettlol.coloredslime.ColoredSlime;
 import net.fettlol.coloredslime.blocks.ColoredHoneyBlock;
 import net.fettlol.coloredslime.blocks.ColoredSlimeBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
@@ -60,10 +59,10 @@ public class Helpers {
 
         for (DyeColor color : DyeColor.values()) {
             blockItems.put(color, new BlockItem(blocks.get(color),
-                new Item.Settings()
-                    .maxCount(64)
-                    .registryKey(RegistryKey.of(RegistryKeys.ITEM, getId.apply(color)))
-                    .useBlockPrefixedTranslationKey()
+                new Item.Properties()
+                    .stacksTo(64)
+                    .setId(ResourceKey.create(Registries.ITEM, getId.apply(color)))
+                    .useBlockDescriptionPrefix()
             ));
         }
 
@@ -71,15 +70,15 @@ public class Helpers {
     }
 
     public static Identifier getColoredSlimeId(DyeColor color) {
-        return ColoredSlime.makeID(color.getId() + "_slime_block");
+        return ColoredSlime.makeID(color.getName() + "_slime_block");
     }
 
     public static Identifier getColoredHoneyId(DyeColor color) {
-        return ColoredSlime.makeID(color.getId() + "_honey_block");
+        return ColoredSlime.makeID(color.getName() + "_honey_block");
     }
 
     public static Identifier getDyeId(DyeColor color) {
-        return Identifier.of("minecraft", color.getId() + "_dye");
+        return Identifier.fromNamespaceAndPath("minecraft", color.getName() + "_dye");
     }
 
 }
