@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "coloredslime:pink_slime_block"
+        "recipes": "coloredslime:pink_slime_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

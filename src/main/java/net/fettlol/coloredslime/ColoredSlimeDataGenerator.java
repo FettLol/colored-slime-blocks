@@ -8,14 +8,16 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fettlol.coloredslime.util.Helpers;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
@@ -71,8 +73,8 @@ public class ColoredSlimeDataGenerator implements DataGeneratorEntrypoint {
 		}
 
 		@Override
-		protected net.minecraft.data.recipes.RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, RecipeOutput exporter) {
-			return new net.minecraft.data.recipes.RecipeProvider(wrapperLookup, exporter) {
+		protected net.minecraft.data.recipes.RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+			return new net.minecraft.data.recipes.RecipeProvider(recipeOutput, advancementOutput) {
 				@Override
 				public void buildRecipes() {
 					for (DyeColor color : DyeColor.values()) {

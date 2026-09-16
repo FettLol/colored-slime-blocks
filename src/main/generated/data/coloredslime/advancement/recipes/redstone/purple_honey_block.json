@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "coloredslime:purple_honey_block"
+        "recipes": "coloredslime:purple_honey_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

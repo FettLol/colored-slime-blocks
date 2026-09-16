@@ -1,5 +1,9 @@
 package net.fettlol.coloredslime.mixin;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.piston.PistonStructureResolver;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -7,11 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static net.fettlol.coloredslime.util.Helpers.isColoredHoney;
 import static net.fettlol.coloredslime.util.Helpers.isColoredSlime;
-
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.piston.PistonStructureResolver;
-import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(value = PistonStructureResolver.class, priority = 450)
 public abstract class PistonHandlerMixin {
